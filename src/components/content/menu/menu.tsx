@@ -1,18 +1,41 @@
 import React from "react";
 import styles from "./menu.module.scss";
-import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../../hooks/hooks";
+import { addNote, getNote } from "../../../store/slices/appSlice";
+import { v4 } from "uuid";
+import { note } from "../../types/types";
 
-const Menu = () => {
-  const items = [1, 2, 3, 4];
+const Menu = (props: { items: note[] }) => {
+  const dispatch = useAppDispatch();
+
+  const handleGet = (id: number): void => {
+    dispatch(getNote({ id: id }));
+  };
+
   const getItems = () => {
-    return items.map((item) => (
-      <NavLink className={styles.item} to={`${item}`}>
-        {item}
-      </NavLink>
+    return props.items.map((item) => (
+      <button
+        className={styles.item}
+        onClick={() => handleGet(item.id)}
+        key={v4()}
+      >
+        {item.id}
+      </button>
     ));
   };
 
-  return <nav>{getItems()}</nav>;
+  const handleAdd = () => {
+    dispatch(addNote());
+  };
+
+  return (
+    <nav>
+      <button className={styles.item} onClick={handleAdd}>
+        +
+      </button>
+      {getItems()}
+    </nav>
+  );
 };
 
 export default Menu;
