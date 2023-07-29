@@ -1,5 +1,5 @@
 # Simple notes
-+ [https://note-00.web.app/](https://note-00.web.app/)
++ Demo -> [https://note-00.web.app/](https://note-00.web.app/)
 
 ## Others projects
 + Weather app ([https://weather-00.web.app/](https://weather-00.web.app/))
