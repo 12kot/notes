@@ -23,7 +23,7 @@ const getNoteTags = (text: string): string[] => {
         .replaceAll("\n", " ")
         .toLowerCase()
         .split(" ")
-        .filter((word) => word.startsWith("#"))
+        .filter((word) => word.startsWith("#") && word.length > 1)
     )
   );
 };
@@ -60,12 +60,15 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     addNote(state) {
-      state.notes.push({
+      const newNote = {
         id: ++state.notesSize,
         header: "",
         text: "",
         tags: [],
-      });
+      };
+
+      state.notes.push(newNote);
+      state.currentNote = newNote;
     },
 
     removeNote(state, action: PayloadAction<{ id: number }>) {

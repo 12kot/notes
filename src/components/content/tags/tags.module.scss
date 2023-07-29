@@ -1,0 +1,14 @@
+.item {
+  justify-content: flex-start;
+  min-width: fit-content !important;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.scroll {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
